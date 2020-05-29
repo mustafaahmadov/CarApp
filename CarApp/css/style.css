@@ -1,0 +1,42 @@
+body {
+    background-color: blanchedalmond;
+}
+
+.controls {
+    margin-top: 5%;
+}
+
+.btn {
+    width: 12%;
+    height: 150px;
+    border: none;
+    outline: none;
+    border-radius: 50%;
+    margin-right: 1%;
+    font-size: 1.5em;
+    letter-spacing: 1px;
+    font-weight: bold;
+    color: white;
+}
+
+.btn:hover {
+    opacity: 0.8;
+    cursor: pointer;
+}
+
+.btn:active {
+    transform: translateY(4px);
+    box-shadow: 0 2px black;
+}
+
+.btn-start {
+    background-color: green;
+}
+
+.btn-stop {
+    background-color: red;
+}
+
+.btn-restart {
+    background-color: rgb(212, 212, 6);
+}

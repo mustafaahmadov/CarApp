@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <title>MiniCarApp</title>
+
+</head>
+
+<body>
+
+    <script id="src">
+        let img = createImage("img/car.gif", "15%");
+        document.body.insertBefore(img, document.body.firstChild)
+
+        let dv = createcontainer();
+        document.body.insertBefore(dv, document.getElementById("src"));
+
+        let btn1 = createElement("Start", ["btn", "btn-start"]);
+        let btn2 = createElement("Stop", ["btn", "btn-stop"]);
+        let btn3 = createElement("Restart", ["btn", "btn-restart"]);
+
+        dv.appendChild(btn1);
+        dv.appendChild(btn2);
+        dv.appendChild(btn3);
+
+
+        function createElement(text, classList) {
+            let btn = document.createElement("button");
+            btn.innerText = text;
+
+            for (let f of classList) {
+                btn.classList.add(f);
+            }
+            return btn;
+        }
+
+        function createImage(src, width) {
+            let image = document.createElement("img");
+            image.style.width = width;
+            image.src = src;
+            return image;
+        }
+
+        function createcontainer() {
+            let dv = document.createElement("div");
+            dv.className = "controls";
+            document.body.appendChild(dv);
+            return dv;
+        }
+
+        document.addEventListener("DOMContentLoaded", function() {
+            let interval = null;
+            let isRunning = false;
+            document.getElementsByClassName("btn-start")[0].addEventListener("click", function() {
+                if (!isRunning) {
+                    interval = setInterval(() => {
+                        let img = document.querySelector("img");
+                        let ML = parseInt(getComputedStyle(img).marginLeft);
+                        ML += 2;
+                        img.style.marginLeft = `${ML}px`;
+                        isRunning = true;
+                    }, 20);
+
+                }
+
+            });
+            document.getElementsByClassName("btn-stop")[0].addEventListener("click", function() {
+                if (interval != null) {
+                    clearInterval(interval);
+                    isRunning = false;
+                }
+
+            });
+            document.getElementsByClassName('btn-restart')[0].addEventListener("click", function() {
+                if (interval != null) {
+                    clearInterval(interval);
+                    isRunning = false;
+                }
+                document.querySelector("img").style.marginLeft = 0;
+            });
+        });
+    </script>
+</body>
+
+</html>
